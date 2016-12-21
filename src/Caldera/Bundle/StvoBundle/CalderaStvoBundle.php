@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle;
+namespace Caldera\Bundle\StvoBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
