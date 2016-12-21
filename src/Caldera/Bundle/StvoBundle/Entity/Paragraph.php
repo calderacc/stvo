@@ -18,6 +18,12 @@ class Paragraph
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Version", inversedBy="paragraphs")
+     * @ORM\JoinColumn(name="version_id", referencedColumnName="id")
+     */
+    protected $version;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $number;
@@ -40,6 +46,18 @@ class Paragraph
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setVersion(Version $version): Paragraph
+    {
+        $this->version = $version;
+
+        return $this;
+    }
+
+    public function getVersion(): ?Version
+    {
+        return $this->version;
     }
 
     public function setNumber(string $number): Paragraph

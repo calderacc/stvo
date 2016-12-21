@@ -2,6 +2,7 @@
 
 namespace Caldera\Bundle\StvoBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,9 +28,14 @@ class Version
      */
     protected $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Paragraph", mappedBy="version")
+     */
+    protected paragraphs;
+
     public function __construct()
     {
-
+        $this->paragraphs = new ArrayCollection();
     }
 
     public function getId(): int
@@ -59,5 +65,17 @@ class Version
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+
+    public function addParagraph(Paragraph $paragraph): Version
+    {
+        $this->paragraphs->add($paragraph);
+
+        return $this;
+    }
+
+    public function getParagraphs(): ArrayCollection
+    {
+        return $this->paragraphs;
     }
 }
