@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <ul>
-    {% for paragraph in paragraphList %}
-        <li>
-            <h3>
-                $ {{ paragraph.number }}: {{ paragraph.title }}
-            </h3>
+{% extends 'CalderaStvoBundle::layout.html.twig' %}
 
-            {{ paragraph.text|raw }}
-        </li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+{% block content %}
+<ul>
+{% for paragraph in paragraphList %}
+    <li>
+        <h3>
+            $ {{ paragraph.number }}: {{ paragraph.title }}
+        </h3>
+
+        {{ paragraph.text|raw }}
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
