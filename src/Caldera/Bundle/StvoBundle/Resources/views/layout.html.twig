@@ -17,6 +17,21 @@
                 <input class="form-control" type="text" placeholder="" />
                 <button class="btn btn-outline-primary" type="submit">Suche</button>
             </form>
+
+            <div class="form-inline float-xs-right mr-2">
+                <div class="dropdown float-xs-right">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Fassung
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        {% for version in versionList %}
+                            <a class="dropdown-item" href="#">
+                                {{ version.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </nav>
         {% block content %}{% endblock %}
 
