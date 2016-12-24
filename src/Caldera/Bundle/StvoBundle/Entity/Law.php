@@ -28,6 +28,11 @@ class Law
      */
     protected $title;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Paragraph", mappedBy="law")
+     */
+    protected $paragraphs;
+
     public function __construct()
     {
         $this->paragraphs = new ArrayCollection();
@@ -60,5 +65,17 @@ class Law
     public function getTitle(): ?string
     {
         return $this->title;
+    }
+
+    public function addParagraph(Paragraph $paragraph): Law
+    {
+        $this->paragraphs->add($paragraph);
+
+        return $this;
+    }
+
+    public function getParagraphs(): ArrayCollection
+    {
+        return $this->paragraphs;
     }
 }
