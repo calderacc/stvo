@@ -5,7 +5,7 @@ namespace Caldera\Bundle\StvoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Caldera\Bundle\StvoBundle\Repository\ParagraphRepository")
  * @ORM\Table(name="paragraph")
  */
 class Paragraph
