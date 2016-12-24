@@ -8,15 +8,15 @@
         <default key="_controller">CalderaStvoBundle:Default:index</default>
     </route>
 
-    <route id="caldera_stvo_version" path="/{{versionSlug}}">
+    <route id="caldera_stvo_version" path="/{versionSlug}">
         <default key="_controller">CalderaStvoBundle:Default:index</default>
     </route>
 
-    <route id="caldera_stvo_paragraph_current" path="/{{paragraph}}">
+    <route id="caldera_stvo_paragraph_current" path="/{paragraph}">
         <default key="_controller">CalderaStvoBundle:Default:paragraph</default>
     </route>
 
-    <route id="caldera_stvo_paragraph_version" path="/{{version}}/{{paragraph}}">
+    <route id="caldera_stvo_paragraph_version" path="/{version}/{paragraph}">
         <default key="_controller">CalderaStvoBundle:Default:paragraph</default>
     </route>
 </routes>
