@@ -1,0 +1,25 @@
+{% extends 'CalderaStvoBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <h1>
+                    {{ law.title }}
+                </h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <a href="{{ path('caldera_stvo_paragraph_current', { number: paragraph.number }) }}">
+                    <h3>
+                        § {{ paragraph.number }}: {{ paragraph.title }}
+                    </h3>
+                </a>
+
+                {{ paragraph.text|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

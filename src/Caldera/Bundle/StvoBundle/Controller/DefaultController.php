@@ -42,15 +42,15 @@ class DefaultController extends Controller
         }
 
         $versionList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findAll();
-        $paragraphList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findByVersion($version);
+        $paragraph = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findOneByVersionNumber($version, $number);
 
         return $this->render(
-            'CalderaStvoBundle:Stvo:overview.html.twig',
+            'CalderaStvoBundle:Stvo:paragraph.html.twig',
             [
-                'paragraphList' => $paragraphList,
                 'law' => $law,
                 'version' => $version,
-                'versionList' => $versionList
+                'versionList' => $versionList,
+                'paragraph' => $paragraph
             ]
         );
     }
