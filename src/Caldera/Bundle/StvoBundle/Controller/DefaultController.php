@@ -31,14 +31,26 @@ class DefaultController extends Controller
             ]);
     }
 
-    public function paragraphVersionAction(Request $request, string $version): Response
+    public function paragraphVersionAction(Request $request, string $number, string $versionSlug = null): Response
     {
-        $paragraphList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findAll();
+        $law = $this->getDoctrine()->getRepository('CalderaStvoBundle:Law')->find(1);
+
+        if ($versionSlug) {
+            $version = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findOneBySlug($versionSlug);
+        } else {
+            $version = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findCurrentVersionForLaw($law);
+        }
+
+        $versionList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findAll();
+        $paragraphList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findByVersion($version);
 
         return $this->render(
             'CalderaStvoBundle:Stvo:overview.html.twig',
             [
-                'paragraphList' => $paragraphList
+                'paragraphList' => $paragraphList,
+                'law' => $law,
+                'version' => $version,
+                'versionList' => $versionList
             ]
         );
     }
