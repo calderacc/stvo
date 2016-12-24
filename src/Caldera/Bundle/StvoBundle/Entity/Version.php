@@ -29,6 +29,26 @@ class Version
     protected $title;
 
     /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $validFrom;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $validUntil;
+
+    /**
+     * @ORM\Column(type="text", length=255, nullable=true)
+     */
+    protected $bgblLink;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $draft;
+
+    /**
      * @ORM\OneToMany(targetEntity="Paragraph", mappedBy="version")
      */
     protected $paragraphs;
@@ -77,5 +97,53 @@ class Version
     public function getParagraphs(): ArrayCollection
     {
         return $this->paragraphs;
+    }
+
+    public function setValidFrom(\DateTime $validFrom): Version
+    {
+        $this->validFrom = $validFrom;
+
+        return $this;
+    }
+
+    public function getValidFrom(): ?\DateTime
+    {
+        return $this->validFrom;
+    }
+
+    public function setValidUntil(\DateTime $validUntil): Version
+    {
+        $this->validUntil = $validUntil;
+
+        return $this;
+    }
+
+    public function getValidUntil(): ?\DateTime
+    {
+        return $this->validUntil;
+    }
+
+    public function setBgblLink(string $bgblLink): Version
+    {
+        $this->bgblLink = $bgblLink;
+
+        return $this;
+    }
+
+    public function getBgblLink(): ?string
+    {
+        return $this->bgblLink;
+    }
+
+    public function setDraft(bool $draft): Version
+    {
+        $this->draft = $draft;
+
+        return $this;
+    }
+
+    public function getDraft(): ?\DateTime
+    {
+        return $this->draft;
     }
 }
