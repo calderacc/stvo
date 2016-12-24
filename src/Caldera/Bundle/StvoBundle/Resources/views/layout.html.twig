@@ -25,7 +25,7 @@
                     </button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {% for version in versionList %}
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ path('caldera_stvo_version', { versionSlug: version.slug }) }}">
                                 {{ version.title }}
                             </a>
                         {% endfor %}
