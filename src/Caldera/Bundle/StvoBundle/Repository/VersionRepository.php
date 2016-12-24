@@ -14,7 +14,7 @@ class VersionRepository extends EntityRepository
 
         $qb
             ->where($qb->expr()->eq('v.law', $law->getId()))
-            ->andWhere($qb->expr()->eq('v.draft', false))
+            ->andWhere($qb->expr()->eq('v.draft', 0))
             ->setMaxResults(1)
             ->orderBy('v.validFrom', 'DESC')
         ;

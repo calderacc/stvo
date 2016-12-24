@@ -19,6 +19,12 @@ class Version
     protected $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Law", inversedBy="paragraphs")
+     * @ORM\JoinColumn(name="law_id", referencedColumnName="id")
+     */
+    protected $law;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $slug;
@@ -61,6 +67,18 @@ class Version
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function setLaw(Law $law): Version
+    {
+        $this->law = $law;
+
+        return $this;
+    }
+
+    public function getLaw(): ?Law
+    {
+        return $this->law;
     }
 
     public function setSlug(string $slug): Version

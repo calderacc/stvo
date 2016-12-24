@@ -90,8 +90,7 @@ class LoadLawCommand extends ContainerAwareCommand
         /** @var EntityManager $entityManager */
         $entityManager = $this->getContainer()->get('doctrine')->getManager();
 
-        $paragraph = $entityManager->getRepository('CalderaStvoBundle:Paragraph')->findOneByLawVersionNumber(
-            $law,
+        $paragraph = $entityManager->getRepository('CalderaStvoBundle:Paragraph')->findOneByVersionNumber(
             $version,
             $number
         );
@@ -105,7 +104,6 @@ class LoadLawCommand extends ContainerAwareCommand
         $paragraph
             ->setTitle($title)
             ->setText($text)
-            ->setLaw($law)
             ->setVersion($version)
         ;
 

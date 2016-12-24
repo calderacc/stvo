@@ -12,14 +12,14 @@ class DefaultController extends Controller
     {
         $law = $this->getDoctrine()->getRepository('CalderaStvoBundle:Law')->find(1);
 
-        if (!$version) {
-            $versionSlug = '2013-neufassung';
+        if ($versionSlug) {
+            $version = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findOneBySlug($versionSlug);
+        } else {
+            $version = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findCurrentVersionForLaw($law);
         }
 
-        $version = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findOneBySlug($versionSlug);
-
         $versionList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findAll();
-        $paragraphList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findByLawVersion($law, $version);
+        $paragraphList = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findByVersion($version);
 
         return $this->render(
             'CalderaStvoBundle:Stvo:overview.html.twig',

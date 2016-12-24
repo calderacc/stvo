@@ -29,13 +29,13 @@ class Law
     protected $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="Paragraph", mappedBy="law")
+     * @ORM\OneToMany(targetEntity="Version", mappedBy="law")
      */
-    protected $paragraphs;
+    protected $versions;
 
     public function __construct()
     {
-        $this->paragraphs = new ArrayCollection();
+        $this->versions = new ArrayCollection();
     }
 
     public function getId(): int
@@ -67,15 +67,15 @@ class Law
         return $this->title;
     }
 
-    public function addParagraph(Paragraph $paragraph): Law
+    public function addVersion(Version $version): Law
     {
-        $this->paragraphs->add($paragraph);
+        $this->versions->add($version);
 
         return $this;
     }
 
-    public function getParagraphs(): ArrayCollection
+    public function getVersions(): ArrayCollection
     {
-        return $this->paragraphs;
+        return $this->versions;
     }
 }

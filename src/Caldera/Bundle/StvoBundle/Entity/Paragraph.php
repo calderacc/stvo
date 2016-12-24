@@ -24,12 +24,6 @@ class Paragraph
     protected $version;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Law", inversedBy="paragraphs")
-     * @ORM\JoinColumn(name="law_id", referencedColumnName="id")
-     */
-    protected $law;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     protected $number;
@@ -64,18 +58,6 @@ class Paragraph
     public function getVersion(): ?Version
     {
         return $this->version;
-    }
-
-    public function setLaw(Law $law): Paragraph
-    {
-        $this->law = $law;
-
-        return $this;
-    }
-
-    public function getLaw(): ?Law
-    {
-        return $this->law;
     }
 
     public function setNumber(string $number): Paragraph
