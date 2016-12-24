@@ -8,7 +8,7 @@
         <default key="_controller">CalderaStvoBundle:Default:index</default>
     </route>
 
-    <route id="caldera_stvo_version" path="/{{version}}">
+    <route id="caldera_stvo_version" path="/{{versionSlug}}">
         <default key="_controller">CalderaStvoBundle:Default:index</default>
     </route>
 
