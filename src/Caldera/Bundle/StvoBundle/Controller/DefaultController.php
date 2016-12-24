@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
-    public function overviewAction(Request $request): Response
+    public function indexAction(Request $request): Response
     {
         $law = $this->getDoctrine()->getRepository('CalderaStvoBundle:Law')->find(1);
         $version = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findOneBySlug('2013-neufassung');

@@ -5,15 +5,15 @@
         http://symfony.com/schema/routing/routing-1.0.xsd">
 
     <route id="caldera_stvo_overview" path="/">
-        <default key="_controller">CalderaStvoBundle:Default:overview</default>
+        <default key="_controller">CalderaStvoBundle:Default:index</default>
     </route>
 
     <route id="caldera_stvo_version" path="/{{version}}">
-        <default key="_controller">CalderaStvoBundle:Default:version</default>
+        <default key="_controller">CalderaStvoBundle:Default:index</default>
     </route>
 
     <route id="caldera_stvo_paragraph_current" path="/{{paragraph}}">
-        <default key="_controller">CalderaStvoBundle:Default:currentParagraph</default>
+        <default key="_controller">CalderaStvoBundle:Default:paragraph</default>
     </route>
 
     <route id="caldera_stvo_paragraph_version" path="/{{version}}/{{paragraph}}">
