@@ -21,6 +21,7 @@ class DiffParser
 
         /** @var ChangedLine $tmpChangedLine */
         $tmpChangedLine = null;
+        $tmpAbsatzNumber = null;
 
         for ($i = 0; $i < count($lines); ++$i) {
             $line = $lines[$i];
@@ -29,12 +30,24 @@ class DiffParser
                 if (strpos($line, '- ') === 0) {
                     if (!$tmpChangedLine) {
                         $tmpChangedLine = new ChangedLine();
+                        $tmpAbsatzNumber = $this->getAbsatzNumber($line);
+                    }
+
+                    if ($this->getAbsatzNumber($line) !== $tmpAbsatzNumber)  {
+                        $this->lines[] = $tmpChangedLine;
+                        $tmpChangedLine = new ChangedLine();
                     }
 
                     $line = str_replace('- ', '', $line);
                     $tmpChangedLine->addOldLine($line);
                 } elseif (strpos($line, '+ ') === 0) {
                     if (!$tmpChangedLine) {
+                        $tmpChangedLine = new ChangedLine();
+                        $tmpAbsatzNumber = $this->getAbsatzNumber($line);
+                    }
+
+                    if ($this->getAbsatzNumber($line) !== $tmpAbsatzNumber)  {
+                        $this->lines[] = $tmpChangedLine;
                         $tmpChangedLine = new ChangedLine();
                     }
 
@@ -65,5 +78,16 @@ class DiffParser
     public function getDiffedLines(): array
     {
         return $this->lines;
+    }
+
+    protected function getAbsatzNumber(string $text): ?string
+    {
+        preg_match('/\(([0-9]{1,3}[a-z]?)\)/', $text, $matches);
+
+        if (count($matches) === 2) {
+            return $matches[1];
+        }
+
+        return null;
     }
 }
