@@ -20,11 +20,23 @@
                 {{ form_start(diffForm) }}
                 <div class="row">
                     <div class="col-md-6">
-                        {{ form_widget(diffForm.oldVersion) }}
+                        <div class="form-group">
+                            {{ form_widget(diffForm.oldVersion, { attr: { class: 'form-control'}}) }}
+                        </div>
                     </div>
 
                     <div class="col-md-6">
-                        {{ form_widget(diffForm.newVersion) }}
+                        <div class="form-group">
+                            {{ form_widget(diffForm.newVersion, { attr: { class: 'form-control'}}) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-xs-center">
+                        <button type="submit" class="btn btn-primary">
+                            Vergleichen
+                        </button>
                     </div>
                 </div>
                 {{ form_end(diffForm) }}

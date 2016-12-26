@@ -16,6 +16,7 @@ class DiffType extends AbstractType
                 EntityType::class,
                 [
                     'class' => 'CalderaStvoBundle:Version',
+                    'choice_value' => 'slug'
                 ]
             )
             ->add(
@@ -23,6 +24,7 @@ class DiffType extends AbstractType
                 EntityType::class,
                 [
                     'class' => 'CalderaStvoBundle:Version',
+                    'choice_value' => 'slug'
                 ]
             )
         ;

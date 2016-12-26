@@ -13,7 +13,15 @@ class DiffController extends Controller
 {
     public function diffAction(Request $request, string $versionSlug1, string $versionSlug2, string $number): Response
     {
-        $law = $this->getDoctrine()->getRepository('CalderaStvoBundle:Law')->find(1);
+        if ($request->isMethod('post')) {
+            $diff = $request->request->get('diff');
+
+            return $this->redirectToRoute('caldera_stvo_diff', [
+                'versionSlug1' => $diff['oldVersion'],
+                'versionSlug2' => $diff['newVersion'],
+                'number' => 2
+            ]);
+        }
 
         $version1 = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findOneBySlug($versionSlug1);
         $version2 = $this->getDoctrine()->getRepository('CalderaStvoBundle:Version')->findOneBySlug($versionSlug2);
