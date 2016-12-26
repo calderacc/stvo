@@ -164,4 +164,9 @@ class Version
     {
         return $this->draft;
     }
+
+    public function __toString(): string
+    {
+        return $this->title;
+    }
 }
