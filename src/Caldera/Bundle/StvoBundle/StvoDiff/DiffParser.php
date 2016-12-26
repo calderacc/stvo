@@ -31,14 +31,21 @@ class DiffParser
                         $tmpChangedLine = new ChangedLine();
                     }
 
+                    $line = str_replace('- ', '', $line);
                     $tmpChangedLine->addOldLine($line);
                 } elseif (strpos($line, '+ ') === 0) {
                     if (!$tmpChangedLine) {
                         $tmpChangedLine = new ChangedLine();
                     }
 
+                    $line = str_replace('+ ', '', $line);
                     $tmpChangedLine->addNewLine($line);
-                } else {
+                } elseif (
+                    strpos($line, '---') !== 0 &&
+                    strpos($line, '+++') !== 0 &&
+                    strpos($line, '@@') !== 0 &&
+                    !empty($line)
+                ) {
                     if ($tmpChangedLine) {
                         $this->lines[] = $tmpChangedLine;
                         $tmpChangedLine = null;
