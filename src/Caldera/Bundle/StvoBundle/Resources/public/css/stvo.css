@@ -4979,3 +4979,10 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 
 .paragraph ul {
   list-style: none; }
+
+.diff .unchanged {
+  background-color: #eee; }
+.diff .old {
+  background-color: #faa; }
+.diff .new {
+  background-color: #afa; }

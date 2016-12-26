@@ -3,3 +3,17 @@
 .paragraph ul {
   list-style: none;
 }
+
+.diff {
+  .unchanged {
+    background-color: #eee;
+  }
+
+  .old {
+    background-color: #faa;
+  }
+
+  .new {
+    background-color: #afa;
+  }
+}

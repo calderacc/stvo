@@ -6,19 +6,21 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container mt-3">
+    <div class="container mt-3 diff">
         {% for line in diffedLines %}
-        <div class="row">
+        <div class="row mb-1">
         {% if line.hasChanged %}
-            <div class="col-md-6">
-                {{ line.oldLines|join }}
+            <div class="col-md-6 old">
+                {{ line.oldLines|join|raw }}
             </div>
-            <div class="col-md-6">
-                {{ line.newLines|join }}
+            <div class="col-md-6 new">
+                {{ line.newLines|join|raw }}
             </div>
         {% else %}
-            <div class="col-md-12">
-                {{ line.text }}
+            <div class="col-md-12 unchanged">
+                <ul class="list-unstyled">
+                {{ line.text|raw }}
+                </ul>
             </div>
         {% endif %}
         </div>
