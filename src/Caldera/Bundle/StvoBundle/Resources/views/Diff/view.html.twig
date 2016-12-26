@@ -7,23 +7,48 @@
 
 {% block content %}
     <div class="container mt-3 diff">
-        {% for line in diffedLines %}
-        <div class="row mb-1">
-        {% if line.hasChanged %}
-            <div class="col-md-6 old">
-                {{ line.oldLines|join|raw }}
+        <div class="row">
+            <div class="col-xs-12 col-md-10 offset-md-1">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>
+                            StVO-Vergleich
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                    </div>
+                </div>
+            {% for line in diffedLines %}
+                <div class="row mb-1">
+                    {% if line.hasChanged %}
+                        <div class="col-md-6 old">
+                            <ul class="list-unstyled">
+                                {{ line.oldLines|join|raw }}
+                            </ul>
+                        </div>
+                        <div class="col-md-6 new">
+                            <ul class="list-unstyled">
+                                {{ line.newLines|join|raw }}
+                            </ul>
+                        </div>
+                    {% else %}
+                        <div class="col-md-12 unchanged">
+                            <ul class="list-unstyled">
+                                {{ line.text|raw }}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
             </div>
-            <div class="col-md-6 new">
-                {{ line.newLines|join|raw }}
-            </div>
-        {% else %}
-            <div class="col-md-12 unchanged">
-                <ul class="list-unstyled">
-                {{ line.text|raw }}
-                </ul>
-            </div>
-        {% endif %}
         </div>
-        {% endfor %}
     </div>
 {% endblock %}
