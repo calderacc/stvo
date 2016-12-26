@@ -11,6 +11,11 @@ class UnchangedLine extends AbstractDiffLine
         $this->text = $text;
     }
 
+    public function getText(): string
+    {
+        return $this->text;
+    }
+
     public function hasChanged(): bool
     {
         return false;

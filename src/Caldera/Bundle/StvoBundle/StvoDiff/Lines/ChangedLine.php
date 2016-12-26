@@ -20,9 +20,19 @@ class ChangedLine extends AbstractDiffLine
 
     public function addNewLine(string $newLine): ChangedLine
     {
-        $this->newLines = $newLine;
+        $this->newLines[] = $newLine;
 
         return $this;
+    }
+
+    public function getOldLines(): array
+    {
+        return $this->oldLines;
+    }
+
+    public function getNewLines(): array
+    {
+        return $this->newLines;
     }
 
     public function hasChanged(): bool

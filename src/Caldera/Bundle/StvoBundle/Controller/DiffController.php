@@ -2,7 +2,9 @@
 
 namespace Caldera\Bundle\StvoBundle\Controller;
 
+use Caldera\Bundle\StvoBundle\StvoDiff\DiffParser;
 use SebastianBergmann\Diff\Differ;
+use SebastianBergmann\Diff\Parser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,8 +22,16 @@ class DiffController extends Controller
         $paragraph2 = $this->getDoctrine()->getRepository('CalderaStvoBundle:Paragraph')->findOneByVersionNumber($version2, $number);
 
         $differ = new Differ();
+        $diff = $differ->diff($paragraph1->getText(), $paragraph2->getText());
 
-        print_r($differ->diff($paragraph1->getText(), $paragraph2->getText()));
-        return new Response();
+        $diffParser = new DiffParser($diff);
+        $diffParser->parse();
+
+        $diffedLines = $diffParser->getDiffedLines();
+
+        return $this->render('CalderaStvoBundle:Diff:view.html.twig',
+            [
+                'diffedLines' => $diffedLines
+            ]);
     }
 }

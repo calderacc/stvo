@@ -1,0 +1,27 @@
+{% extends 'CalderaStvoBundle::layout.html.twig' %}
+
+
+{% block breadcrumb %}
+
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        {% for line in diffedLines %}
+        <div class="row">
+        {% if line.hasChanged %}
+            <div class="col-md-6">
+                {{ line.oldLines|join }}
+            </div>
+            <div class="col-md-6">
+                {{ line.newLines|join }}
+            </div>
+        {% else %}
+            <div class="col-md-12">
+                {{ line.text }}
+            </div>
+        {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
