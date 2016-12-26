@@ -17,15 +17,17 @@
                     </div>
                 </div>
 
+                {{ form_start(diffForm) }}
                 <div class="row">
                     <div class="col-md-6">
-
+                        {{ form_widget(diffForm.oldVersion) }}
                     </div>
 
                     <div class="col-md-6">
-
+                        {{ form_widget(diffForm.newVersion) }}
                     </div>
                 </div>
+                {{ form_end(diffForm) }}
             {% for line in diffedLines %}
                 <div class="row mb-1">
                     {% if line.hasChanged %}
