@@ -2,6 +2,7 @@
 
 namespace Caldera\Bundle\StvoBundle\StvoDiff;
 
+use Caldera\Bundle\StvoBundle\StvoDiff\Lines\AbstractDiffLine;
 use Caldera\Bundle\StvoBundle\StvoDiff\Lines\ChangedLine;
 use Caldera\Bundle\StvoBundle\StvoDiff\Lines\UnchangedLine;
 
@@ -29,6 +30,10 @@ class DiffParagraph
     {
         $absatzNumber = $this->getAbsatzNumber($text);
 
+        if (!$absatzNumber) {
+            $absatzNumber = $this->getLastAbsatzNumber();
+        }
+
         /** @var ChangedLine $changedLine */
         if (array_key_exists($absatzNumber, $this->lines)) {
             $changedLine = $this->lines[$absatzNumber];
@@ -45,6 +50,10 @@ class DiffParagraph
     public function addNewLine(string $text): DiffParagraph
     {
         $absatzNumber = $this->getAbsatzNumber($text);
+
+        if (!$absatzNumber) {
+            $absatzNumber = $this->getLastAbsatzNumber();
+        }
 
         /** @var ChangedLine $changedLine */
         if (array_key_exists($absatzNumber, $this->lines)) {
@@ -68,6 +77,16 @@ class DiffParagraph
         }
 
         return null;
+    }
+
+    protected function getLastAbsatzNumber(): ?string
+    {
+        return key($this->lines);
+    }
+
+    protected function getLastLine(): AbstractDiffLine
+    {
+        return $this->lines[$this->getLastAbsatzNumber()];
     }
 
     public function getLines(): array
