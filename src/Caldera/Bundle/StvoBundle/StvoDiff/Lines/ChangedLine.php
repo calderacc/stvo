@@ -2,7 +2,7 @@
 
 namespace Caldera\Bundle\StvoBundle\StvoDiff\Lines;
 
-class ChangedLine
+class ChangedLine extends AbstractDiffLine
 {
     protected $oldLines = [];
     protected $newLines = [];
@@ -23,5 +23,10 @@ class ChangedLine
         $this->newLines = $newLine;
 
         return $this;
+    }
+
+    public function hasChanged(): bool
+    {
+        return true;
     }
 }
